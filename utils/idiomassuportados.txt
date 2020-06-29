@@ -1,0 +1,3 @@
+cd venv
+cd bin
+./gtts-cli --all
