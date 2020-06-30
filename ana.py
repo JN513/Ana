@@ -5,7 +5,6 @@ import speech_recognition as sr
 with open('sistema-intelige-1537185170980-b86ebc917520.json') as credenciais_google:
     credenciais_google = credenciais_google.read()
 
-
 def monitora_audio():
     microfone = sr.Recognizer() #pega o adio do microfone
 
