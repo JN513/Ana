@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import speech_recognition as sr
 from gtts import gTTS
-from datetime import datetime
+from datetime import time, datetime, timezone
 from subprocess import call
 from requests import get
 from bs4 import BeautifulSoup
@@ -50,15 +50,22 @@ def responde(arquivo):
 
 def cria_audio(menssagem):
     tts = gTTS(menssagem, lang='pt-br')  
-    tts.save('audios/noticia.mp3')    
-    #sinataxe o player e o audio
-    call(['ffplay','-nodisp','-autoexit','audios/noticia.mp3'])   #no linux
+    tts.save('audios/geral.mp3')
+    print('ANA: ',menssagem)
+    call(['ffplay','-nodisp','-autoexit','audios/geral.mp3'])   #no linux
     #call(['afplay','audios/'+nome+'.mp3'])    #no mac
     #playsound('audios/'+nome+'.mp3')          #windows aqui so passa o audio
 
 def executa_comandos(trigger):
     if 'notícias' in trigger:
         ultimas_noticias()
+    elif 'hora' in trigger:
+        hora()
+    else:
+        menssagem = trigger.strip(hotword)
+        cria_audio(menssagem)
+        print('Comando inválido ', menssagem)
+        responde('comanin')
     
 
 ##### funções de comandos #####
@@ -68,9 +75,14 @@ def ultimas_noticias():
     noticias =  BeautifulSoup(site.text, 'html.parser')
     for item in noticias.findAll('item')[:5]:#trocando o numero muda quantas noticas passa
         menssagem = item.title.text
-        print(menssagem)
         cria_audio(menssagem)
 
+def hora():
+    data_e_hora_atuais = datetime.now()
+    data_e_hora_em_texto = data_e_hora_atuais.strftime('%d/%m/%Y %H:%M')
+    cria_audio(data_e_hora_em_texto)
+
+def playlist():
 
 ##### função inicio #####
 
