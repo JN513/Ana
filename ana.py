@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import speech_recognition as sr
+from gtts import gTTS
+import datetime
 from subprocess import call
 
 ##### configurações #####
@@ -32,14 +34,23 @@ def monitora_audio():
 
             except sr.UnknownValueError:
                 print("Google not understand audio")
+                #responde('naoentende')
 
             except sr.RequestError as e:
                 print("Could not request results from Google Cloud Speech service; {0}".format(e))
+                responde('errodeconecao')
 
     return trigger   
 
 def responde(arquivo):
     call(['ffplay','-nodisp','-autoexit','audios/'+arquivo+'.mp3'])
+"""
+def hora(hora1):
+    tts = gTTS('agora são:'+hora1, lang='pt-br')
+    tts.save('audios/hora.mp3')     
+    call(['ffplay','-nodisp','-autoexit','audios/hora.mp3'])
+"""
+def main():
+    monitora_audio()
 
-
-monitora_audio()
+main()
