@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import speech_recognition as sr
 from gtts import gTTS
-import datetime
+from datetime import datetime
 from subprocess import call
+from requests import get
+from bs4 import BeautifulSoup
+#from playsound import playsound            #para reproduzir no windows
 
 ##### configurações #####
 
@@ -29,7 +32,7 @@ def monitora_audio():
                 if hotword in trigger:
                     print('Comando: ', trigger)
                     responde('feedback')
-                    ### fazer algo ###
+                    executa_comandos(trigger)
                     break
 
             except sr.UnknownValueError:
@@ -44,12 +47,33 @@ def monitora_audio():
 
 def responde(arquivo):
     call(['ffplay','-nodisp','-autoexit','audios/'+arquivo+'.mp3'])
-"""
-def hora(hora1):
-    tts = gTTS('agora são:'+hora1, lang='pt-br')
-    tts.save('audios/hora.mp3')     
-    call(['ffplay','-nodisp','-autoexit','audios/hora.mp3'])
-"""
+
+def cria_audio(menssagem):
+    tts = gTTS(menssagem, lang='pt-br')  
+    tts.save('audios/noticia.mp3')    
+    #sinataxe o player e o audio
+    call(['ffplay','-nodisp','-autoexit','audios/noticia.mp3'])   #no linux
+    #call(['afplay','audios/'+nome+'.mp3'])    #no mac
+    #playsound('audios/'+nome+'.mp3')          #windows aqui so passa o audio
+
+def executa_comandos(trigger):
+    if 'notícias' in trigger:
+        ultimas_noticias()
+    
+
+##### funções de comandos #####
+
+def ultimas_noticias():
+    site = get('https://news.google.com/rss?hl=pt-BR&gl=BR&ceid=BR:pt-419')
+    noticias =  BeautifulSoup(site.text, 'html.parser')
+    for item in noticias.findAll('item')[:5]:#trocando o numero muda quantas noticas passa
+        menssagem = item.title.text
+        print(menssagem)
+        cria_audio(menssagem)
+
+
+##### função inicio #####
+
 def main():
     monitora_audio()
 

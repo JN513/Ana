@@ -7,8 +7,8 @@ def cria_audio(audio,nome):
     tts.save('audios/'+nome+'.mp3')         #salvando o audio
     #sinataxe o player e o audio
     call(['ffplay','-nodisp','-autoexit','audios/'+nome+'.mp3'])   #no linux
-    #call(['afplay','audios/hello.mp3'])    #no mac
-    #playsound('audios/hello.mp3')          #windows aqui so passa o audio
+    #call(['afplay','audios/'+nome+'.mp3'])    #no mac
+    #playsound('audios/'+nome+'.mp3')          #windows aqui so passa o audio
 
 a = input('Digite a menssage do audio:\n')
 b = input('Digite o nome do audio:\n')
