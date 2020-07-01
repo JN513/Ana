@@ -4,14 +4,14 @@ from subprocess import call
 from requests import get
 from bs4 import BeautifulSoup
 import webbrowser as browser
-import criaaudio
+from func import criaaudio
 
 def ultimas_noticias():
     site = get('https://news.google.com/rss?hl=pt-BR&gl=BR&ceid=BR:pt-419')
     noticias =  BeautifulSoup(site.text, 'html.parser')
     for item in noticias.findAll('item')[:5]:#trocando o numero muda quantas noticas passa
         menssagem = item.title.text
-        caudio.cria_audio(menssagem)
+        criaaudio.cria_audio(menssagem)
 
 def hora():
     data_e_hora_atuais = datetime.now()
@@ -19,7 +19,7 @@ def hora():
     fuso_horario = timezone(diferenca)
     data_e_hora_sao_paulo = data_e_hora_atuais.astimezone(fuso_horario)
     data_e_hora_sao_paulo_em_texto = data_e_hora_sao_paulo.strftime('%d/%m/%Y %H:%M')
-    caudio.cria_audio(data_e_hora_sao_paulo_em_texto)
+    criaaudio.cria_audio(data_e_hora_sao_paulo_em_texto)
 
 def playlist(album):
     if 'agora' in album:
@@ -44,5 +44,3 @@ def abre_pagina(nome):
         browser.open_new_tab('https://www.youtube.com/')
     elif 'codify' in nome:
         browser.open_new_tab('http://codify.games/')
-
-hora()

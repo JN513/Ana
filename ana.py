@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys
 import speech_recognition as sr
-from gtts import gTTS
 from subprocess import call
 from func import fbase
 from func import criaaudio
@@ -45,18 +43,12 @@ def monitora_audio():
 
 def responde(arquivo):
     call(['ffplay','-nodisp','-autoexit','audios/'+arquivo+'.mp3'])
-"""
-def cria_audio(menssagem):
-    tts = gTTS(menssagem, lang='pt-br')
-    tts.save('audios/geral.mp3')
-    print('ANA: ',menssagem)
-    call(['ffplay','-nodisp','-autoexit','audios/geral.mp3'])
-"""
+
 def executa_comandos(trigger):
     if 'notícias' in trigger:
         fbase.ultimas_noticias()
     elif 'hora' in trigger:
-        hora()
+        fbase.hora()
     elif 'toca' in trigger:
         album = trigger.strip(hotword)
         fbase.playlist(album)
