@@ -1,7 +1,7 @@
 # Ana
 Assistente feita em python, usando speech recognition e APIs do Google de TTS e STT. para IoT e controle de PC.
 
-##Estrutura
+## Estrutura
 
 Arquivo principal = 'ana.py'.
 Pasta audios contem o audio padrão e os audios pre-definidos. 
