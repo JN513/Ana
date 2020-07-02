@@ -49,6 +49,10 @@ def executa_comandos(trigger):
         fbase.ultimas_noticias()
     elif 'hora' in trigger:
         fbase.hora()
+    elif 'data' in trigger:
+        fbase.data()
+    elif 'data' in trigger and 'hora' in trigger:
+        fbase.dataehora()
     elif 'toca' in trigger:
         album = trigger.strip(hotword)
         fbase.playlist(album)
