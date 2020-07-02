@@ -5,6 +5,7 @@ from requests import get
 from bs4 import BeautifulSoup
 import webbrowser as browser
 from func import criaaudio
+import json
 
 def ultimas_noticias():
     site = get('https://news.google.com/rss?hl=pt-BR&gl=BR&ceid=BR:pt-419')
@@ -32,6 +33,26 @@ def playlist(album):
         browser.open_new_tab('https://open.spotify.com/track/738SQjONa0q63yhLxvg3m1?si=gzQctUONSh2PU-O3PIFMUg')
     else:
         browser.open_new_tab('https://open.spotify.com/track/4u7EnebtmKWzUH433cf5Qv?si=QABP8IHuQv-Bg9R7qtC8Fg')
+
+def previsao_tempo(tempo=False, minimax=False, todos=False):
+    site = get('https://api.openweathermap.org/data/2.5/weather?q=Guap%C3%A9,mg,br&appid=d489d1a675d0a5e9990e3086d3cbe78b&units=metric&lang=pt')
+    clima = site.json()
+    #print(json.dumps(clima, indent=4))
+    temperatura = clima['main']['temp']
+    temperaturamin =clima['main']['temp_min']
+    temperaturamax = clima['main']['temp_max']
+    umidade = clima['main']['humidity']
+    descricao =clima['weather'][0]['description']
+
+    if todos:
+        menssagem = f'hoje fara em média {temperatura} graus, com minimas de {temperaturamin} graus e máximas de {temperaturamax}graus, humidade de {umidade}% e {descricao}'
+        criaaudio.cria_audio(menssagem)
+    elif tempo:
+        menssagem = f'No momento fazem {temperatura} graus, a humidade esta em cerca de {umidade}% e {descricao}'
+        criaaudio.cria_audio(menssagem)
+    elif minimax:
+        menssagem = f'Minima de {temperaturamin} graus, maxima de {temperaturamax} graus'
+        criaaudio.cria_audio(menssagem)
 
 def abre_pagina(nome):
     if 'whatsapp' in nome:

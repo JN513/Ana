@@ -58,6 +58,12 @@ def executa_comandos(trigger):
     elif 'abrir' in trigger:
         nome = trigger.strip(hotword)
         fbase.abre_pagina(nome)
+    elif 'tempo' in trigger and 'agora' in trigger:
+        fbase.previsao_tempo(tempo=True)
+    elif 'temperatura' in trigger and 'hoje' in trigger:
+        fbase.previsao_tempo(minimax=True)
+    elif 'clima' in trigger:
+        fbase.previsao_tempo(todos=True)
     else:
         menssagem = trigger.strip(hotword)
         if menssagem != "":
