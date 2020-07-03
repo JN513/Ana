@@ -3,10 +3,16 @@ import speech_recognition as sr
 from subprocess import call
 from func import fbase
 from func import criaaudio
+import json
 
 ##### configurações #####
 
-hotword = 'ana'
+config = open('config/config.json', 'r')
+config_json = json.load(config)
+
+hotword = config_json['hotword']
+idioma = config_json['language']
+
 with open('config/sistema-intelige-1537185170980-b86ebc917520.json') as credenciais_google:
     credenciais_google = credenciais_google.read()
 
@@ -22,7 +28,7 @@ def monitora_audio():
 
             try:
 
-                trigger = microfone.recognize_google_cloud(audio, credentials_json=credenciais_google, language='pt-BR')
+                trigger = microfone.recognize_google_cloud(audio, credentials_json=credenciais_google, language=idioma)
                 trigger = trigger.lower()
 
                 if hotword in trigger:
@@ -70,7 +76,7 @@ def executa_comandos(trigger):
         fbase.previsao_tempo(todos=True)
     else:
         menssagem = trigger.strip(hotword)
-        if menssagem != "":
+        if menssagem != " ":
             criaaudio.cria_audio(menssagem)
             print('Comando inválido ', menssagem)
             responde('comanin')
