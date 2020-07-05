@@ -65,14 +65,14 @@ def executa_comandos(trigger):
     elif 'abra' in trigger or 'abrir' in trigger or 'abre' in trigger:
         nome = trigger.strip(hotword)
         fbase.abre_pagina(nome)
-    elif 'coronavirus' in trigger or 'covid' in trigger:
+    elif 'coronavírus' in trigger or 'covid' in trigger:
         nome = trigger.strip(hotword)
         fbase.status_covid(nome)
     elif 'tempo' in trigger and 'agora' in trigger:
         fbase.previsao_tempo(tempo=True)
     elif 'temperatura' in trigger and 'hoje' in trigger:
         fbase.previsao_tempo(minimax=True)
-    elif 'previsao' in trigger and 'tempo' in trigger:
+    elif 'previsão' in trigger and 'tempo' in trigger:
         fbase.previsao_tempo(todos=True)
     else:
         menssagem = trigger.strip(hotword)
