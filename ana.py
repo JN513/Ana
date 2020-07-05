@@ -81,7 +81,7 @@ def executa_comandos(trigger):
             print('Comando inválido ', menssagem)
             responde('comanin')
         else:
-            reponde('hello')
+            responde('hello')
 
 ##### função inicio #####
 
