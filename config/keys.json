@@ -1,6 +1,8 @@
 {
     "key_previcao_tempo": "d489d1a675d0a5e9990e3086d3cbe78b",
     "url": "https://api.openweathermap.org/data/2.5/weather?q=Guap%C3%A9,mg,br&appid=d489d1a675d0a5e9990e3086d3cbe78b&units=metric&lang=pt",
-    "api_covid": "https://covid19-brazil-api.now.sh/api/report/v1",
-    "site_api_covid": "https://covid19-brazil-api.now.sh"
+    "api_covid_estados": "https://covid19-brazil-api.now.sh/api/report/v1",
+    "site_api_covid": "https://covid19-brazil-api.now.sh",
+    "api_covid_br": "https://covid19-brazil-api.now.sh/api/report/v1/brazil",
+    "api_covid_estado_especico": 
 }

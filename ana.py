@@ -35,7 +35,7 @@ def monitora_audio():
                     print('Comando: ', trigger)
                     responde('feedback')
                     executa_comandos(trigger)
-                    #break
+                    break
 
             except sr.UnknownValueError:
                 print("Google not understand audio")
@@ -59,20 +59,20 @@ def executa_comandos(trigger):
         fbase.data()
     elif 'data' in trigger and 'hora' in trigger:
         fbase.dataehora()
-    elif 'toca' in trigger:
+    elif 'toca' in trigger or 'toque' in trigger:
         album = trigger.strip(hotword)
         fbase.playlist(album)
-    elif 'abra' in trigger:
+    elif 'abra' in trigger or 'abrir' in trigger or 'abre' in trigger:
         nome = trigger.strip(hotword)
         fbase.abre_pagina(nome)
-    elif 'abrir' in trigger:
+    elif 'coronavirus' in trigger or 'covid' in trigger:
         nome = trigger.strip(hotword)
-        fbase.abre_pagina(nome)
+        fbase.status_covid(nome)
     elif 'tempo' in trigger and 'agora' in trigger:
         fbase.previsao_tempo(tempo=True)
     elif 'temperatura' in trigger and 'hoje' in trigger:
         fbase.previsao_tempo(minimax=True)
-    elif 'clima' in trigger:
+    elif 'previsao' in trigger and 'tempo' in trigger:
         fbase.previsao_tempo(todos=True)
     else:
         menssagem = trigger.strip(hotword)
@@ -86,6 +86,7 @@ def executa_comandos(trigger):
 ##### função inicio #####
 
 def main():
-    monitora_audio()
+    while True:
+        monitora_audio()
 
 main()

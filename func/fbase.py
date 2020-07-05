@@ -81,3 +81,47 @@ def abre_pagina(nome):
         browser.open_new_tab('https://www.youtube.com/')
     elif 'codify' in nome:
         browser.open_new_tab('http://codify.games/')
+
+def status_covid(pedido):
+    if 'brasil' in pedido:
+        site = get('https://covid19-brazil-api.now.sh/api/report/v1/brazil')
+        dados = site.json()
+
+        confirmados = dados['data']['confirmed']
+        mortos = dados['data']['deaths']
+        suspeitos = dados['data']['recovered']
+        atualizadoem = dados['data']['updated_at']
+
+        menssagem = f' Atualmente no Brasil tem {confirmados} casos confirmados, {suspeitos} recuperados e {mortos} mortes confirmadas por covid-19.'
+
+        criaaudio.cria_audio(menssagem)
+
+    elif 'minas gerais' in pedido:
+        site = get('https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/mg')
+        dados = site.json()
+
+        confirmados = dados['cases']
+        mortos = dados['deaths']
+        suspeitos = dados['suspects']
+        recuperados = dados['refuses']
+        atualizadoem = dados['datetime']
+
+        menssagem = f'Atualmente em Minas-Gerais tem {confirmados} casos confirmados, {suspeitos} suspeitos e {mortos} mortes confirmadas por covid-19.'
+
+        criaaudio.cria_audio(menssagem)
+
+    elif 'estados' in pedido:
+        site = get('https://covid19-brazil-api.now.sh/api/report/v1')
+        dados = site.json()
+
+        for i in range(0,25):
+            confirmados = dados['data'][i]['cases']
+            mortos = dados['data'][i]['deaths']
+            suspeitos = dados['data'][i]['suspects']
+            recuperados = dados['data'][i]['refuses']
+            atualizadoem = dados['data'][i]['datetime']
+            estado = dados ['data'][i]['state']
+
+            menssagem = f'{estado} Atualmente tem {confirmados} casos confirmados, {suspeitos} suspeitos e {mortos} mortes confirmadas por covid-19.'
+
+            criaaudio.cria_audio(menssagem)
