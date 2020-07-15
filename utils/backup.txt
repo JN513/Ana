@@ -23,7 +23,6 @@ public==2019.4.13
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 PyAudio==0.2.11
-pygame==1.9.6
 pytz==2020.1
 query-string==2019.4.13
 request==2019.4.13

@@ -23,6 +23,7 @@ def monitora_audio():
     with sr.Microphone() as source:
 
         while True:
+            microfone.adjust_for_ambient_noise(source)
             print("Estou aqui: ")
             audio = microfone.listen(source)
 
