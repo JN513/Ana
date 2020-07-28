@@ -5,6 +5,7 @@ from requests import get
 from bs4 import BeautifulSoup
 import webbrowser as browser
 from func import criaaudio
+from paho.mqtt import publish
 import json
 
 def ultimas_noticias():
@@ -125,3 +126,12 @@ def status_covid(pedido):
             menssagem = f'{estado} Atualmente tem {confirmados} casos confirmados, {suspeitos} suspeitos e {mortos} mortes confirmadas por covid-19.'
 
             criaaudio.cria_audio(menssagem)
+
+def publica_mqtt(topic, payload):
+    publish.single(topic, payload=payload, qos=1, retain=False, hostname="localhost",port=1883,client_id="ana", auth={'username': 'jn513','password':'jn513'})
+
+    if payload == '1':
+            mensagem = 'Bunker Ligado!'
+    elif payload == '0':
+        mensagem = 'Bunker Desligado!'
+    criaaudio.cria_audio(mensagem)
