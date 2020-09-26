@@ -91,7 +91,7 @@ def status_covid(pedido):
         confirmados = dados['data']['confirmed']
         mortos = dados['data']['deaths']
         suspeitos = dados['data']['recovered']
-        atualizadoem = dados['data']['updated_at']
+        #atualizadoem = dados['data']['updated_at']
 
         menssagem = f' Atualmente no Brasil tem {confirmados} casos confirmados, {suspeitos} recuperados e {mortos} mortes confirmadas por covid-19.'
 
@@ -105,9 +105,9 @@ def status_covid(pedido):
         mortos = dados['deaths']
         suspeitos = dados['suspects']
         recuperados = dados['refuses']
-        atualizadoem = dados['datetime']
+        #atualizadoem = dados['datetime']
 
-        menssagem = f'Atualmente em Minas-Gerais tem {confirmados} casos confirmados, {suspeitos} suspeitos e {mortos} mortes confirmadas por covid-19.'
+        menssagem = f'Atualmente em Minas-Gerais tem {confirmados} casos confirmados, {suspeitos} suspeitos, {mortos} mortes confirmadas por covid-19, e {recuperados} recuperados'
 
         criaaudio.cria_audio(menssagem)
 
