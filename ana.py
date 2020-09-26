@@ -77,7 +77,7 @@ def executa_comandos(trigger):
         fbase.previsao_tempo(todos=True)
     elif 'liga a lâmpada' in trigger or 'ativa a lâmpada' in trigger:
         fbase.publica_mqtt('rele/', '1')
-    elif 'desativa a lâmpada' in trigger or 'desliga a lâmpada' in trigger:
+    elif 'desativa a lâmpada' in trigger or 'desliga a lâmpada' in trigger or 'apaga a lâmpada' in trigger:
         fbase.publica_mqtt('rele/', '0')
     else:
         menssagem = trigger.strip(hotword)
