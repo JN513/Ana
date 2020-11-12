@@ -4,6 +4,7 @@ from subprocess import call
 from func import fbase
 from func import criaaudio
 import json
+from playsound import playsound
 
 ##### configurações #####
 
@@ -50,6 +51,7 @@ def monitora_audio():
 
 def responde(arquivo):
     call(['ffplay','-nodisp','-autoexit','audios/'+arquivo+'.mp3'])
+    #playsound('audios/'+arquivo+'.mp3')          #windows aqui so passa o audio
 
 def executa_comandos(trigger):
     if 'notícias' in trigger:
