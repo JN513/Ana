@@ -78,9 +78,15 @@ def executa_comandos(trigger):
     elif 'previsão' in trigger and 'tempo' in trigger:
         fbase.previsao_tempo(todos=True)
     elif 'liga a lâmpada' in trigger or 'ativa a lâmpada' in trigger:
-        fbase.publica_mqtt('rele/', '1')
+        fbase.publica_mqtt('rele/', '2')
     elif 'desativa a lâmpada' in trigger or 'desliga a lâmpada' in trigger or 'apaga a lâmpada' in trigger:
-        fbase.publica_mqtt('rele/', '0')
+        fbase.publica_mqtt('rele/', '3')
+    elif 'temperatura' in trigger:
+        fbase.le_temperatura('sala1/temp/')
+    elif 'umidade' in trigger:
+        fbase.le_umidade('sala1/umi/')
+    elif  'parar' in trigger and 'execução' in trigger:
+        print("parado Ana") 
     else:
         menssagem = trigger.strip(hotword)
         criaaudio.cria_audio(menssagem)
@@ -92,7 +98,12 @@ def executa_comandos(trigger):
 
 def main():
     while True:
-        monitora_audio()
+        try:
+            monitora_audio()
+            #if r == False:
+            #    break
+        except:
+            print("Erro ao executar o codigo")
 
 main()
 

@@ -5,7 +5,7 @@ from requests import get
 from bs4 import BeautifulSoup
 import webbrowser as browser
 from func import criaaudio
-from paho.mqtt import publish
+from paho.mqtt import publish, subscribe
 import json
 
 def ultimas_noticias():
@@ -128,10 +128,30 @@ def status_covid(pedido):
             criaaudio.cria_audio(menssagem)
 
 def publica_mqtt(topic, payload):
-    publish.single(topic, payload=payload, qos=1, retain=False, hostname="localhost",port=1883,client_id="ana", auth={'username': 'jn513','password':'jn513'})
+    publish.single(topic, payload=payload, qos=1, retain=False, hostname="192.168.0.102",port=1883,client_id="ana", auth={'username': 'cafepuroebom','password':'cafecomcodigoemuitobom'})
 
-    if payload == '1':
+    if payload == '2':
             mensagem = 'Bunker Ligado!'
-    elif payload == '0':
+    elif payload == '3':
         mensagem = 'Bunker Desligado!'
     criaaudio.cria_audio(mensagem)
+
+def le_temperatura(topic):
+    msg = subscribe.simple("sala1/temp/", hostname="192.168.0.102",port=1883,client_id="ana", auth={'username': 'cafepuroebom','password':'cafecomcodigoemuitobom'})
+    print("%s %s" % (msg.topic, msg.payload))
+    msg = str(msg.payload)
+    msg = msg.strip("'")
+    msg = msg.strip("b")
+    msg = msg.strip(" ")
+    msg = msg.strip("'")
+    criaaudio.cria_audio(f'Esta fazendo { msg} graus no bunker')
+
+def le_umidade(topic):
+    msg = subscribe.simple("sala1/umi/", hostname="192.168.0.102",port=1883,client_id="ana", auth={'username': 'cafepuroebom','password':'cafecomcodigoemuitobom'})
+    print("%s %s" % (msg.topic, msg.payload))
+    msg = str(msg.payload)
+    msg = msg.strip("'")
+    msg = msg.strip("b")
+    msg = msg.strip("'")
+    msg = msg.strip(" ")
+    criaaudio.cria_audio(f'O bunker esta com { msg} porcento de umidade')

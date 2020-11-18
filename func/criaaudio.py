@@ -5,7 +5,12 @@ from subprocess import call
 
 def cria_audio(menssagem):
     tts = gTTS(menssagem, lang='pt-br')
-    tts.save('audios/geral.mp3')
-    print('\nANA: ',menssagem,'\n')
+    while True:
+        try:
+            tts.save('audios/geral.mp3')
+            break
+        except:
+            print("Erro ao gerar audio!!!")
+    print('f\nANA: {menssagem}\n')
     call(['ffplay','-nodisp','-autoexit','audios/geral.mp3'])
     #playsound('audios/geral.mp3')          #windows aqui so passa o audio
