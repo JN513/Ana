@@ -1,0 +1,8 @@
+{
+    "key_previcao_tempo": "sua_chave",
+    "url": "https://api.openweathermap.org/data/2.5/weather?q= sua_cidade, seu_estado ,br&appid= sua_chave &units=metric&lang=pt",
+    "api_covid_estados": "https://covid19-brazil-api.now.sh/api/report/v1",
+    "site_api_covid": "https://covid19-brazil-api.now.sh",
+    "api_covid_br": "https://covid19-brazil-api.now.sh/api/report/v1/brazil",
+    "api_covid_estado_especico": ""
+}
