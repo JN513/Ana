@@ -24,6 +24,7 @@ with open(
 
 ##### funções principais #####
 
+
 def monitora_audio():
     microfone = sr.Recognizer()
     with sr.Microphone() as source:
@@ -64,7 +65,7 @@ def monitora_audio():
 def responde(arquivo):
     p = vlc.MediaPlayer(f"audios/{arquivo}.mp3")
     p.play()
-    #call(["ffplay", "-nodisp", "-autoexit", f"audios/{arquivo}.mp3"])
+    # call(["ffplay", "-nodisp", "-autoexit", f"audios/{arquivo}.mp3"])
     # playsound('audios/'+arquivo+'.mp3')          #windows aqui so passa o audio
 
 

@@ -15,7 +15,7 @@ def cria_audio(menssagem):
         except:
             print("Erro ao gerar audio!!!")
     print(f"\nANA: {menssagem}\n")
-    p = vlc.MediaPlayer('audios/geral.mp3')
+    p = vlc.MediaPlayer("audios/geral.mp3")
     p.play()
-    #call(["ffplay", "-nodisp", "-autoexit", "audios/geral.mp3"])
+    # call(["ffplay", "-nodisp", "-autoexit", "audios/geral.mp3"])
     # playsound('audios/geral.mp3')          #windows aqui so passa o audio
