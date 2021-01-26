@@ -1,7 +1,9 @@
-.venv
-venv
+.env
+env
 *.pyc
 .pyc
 config/sistema-intelige-1537185170980-b86ebc917520.json
 config/keys.json
 run
+model
+*.pyc
