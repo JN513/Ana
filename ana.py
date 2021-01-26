@@ -118,7 +118,7 @@ def executa_comandos(trigger):
 
 
 def main():
-    responde("feedback")
+    responde("init")
     while True:
         try:
             monitora_audio()
@@ -126,4 +126,5 @@ def main():
             print("Erro ao executar o codigo")
 
 
-main()
+if __name__ == "__main__":
+    main()
