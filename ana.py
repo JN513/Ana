@@ -6,8 +6,10 @@ from func import fbase
 from func import criaaudio
 import json
 from playsound import playsound
+import vlc
 
 ##### configurações #####
+
 
 config = open("config/config.json", "r")
 config_json = json.load(config)
@@ -21,7 +23,6 @@ with open(
     credenciais_google = credenciais_google.read()
 
 ##### funções principais #####
-
 
 def monitora_audio():
     microfone = sr.Recognizer()
@@ -61,7 +62,9 @@ def monitora_audio():
 
 
 def responde(arquivo):
-    call(["ffplay", "-nodisp", "-autoexit", "audios/" + arquivo + ".mp3"])
+    p = vlc.MediaPlayer(f"audios/{arquivo}.mp3")
+    p.play()
+    #call(["ffplay", "-nodisp", "-autoexit", f"audios/{arquivo}.mp3"])
     # playsound('audios/'+arquivo+'.mp3')          #windows aqui so passa o audio
 
 
@@ -114,11 +117,10 @@ def executa_comandos(trigger):
 
 
 def main():
+    responde("feedback")
     while True:
         try:
             monitora_audio()
-            # if r == False:
-            #    break
         except:
             print("Erro ao executar o codigo")
 
