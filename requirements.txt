@@ -43,7 +43,7 @@ pyserial==3.4
 python-vlc==3.0.11115
 pyttsx3==2.90
 pytz==2020.1
-PyYAML==5.3.1
+PyYAML==5.4
 regex==2020.11.13
 requests==2.24.0
 rsa==4.6
